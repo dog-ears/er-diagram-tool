@@ -6,6 +6,9 @@ import { NgModule } from '@angular/core';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 
+// service
+import { DataService } from './service/data.service';
+
 // component
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
@@ -20,7 +23,9 @@ import { NavbarComponent } from './navbar/navbar.component';
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
   ],
-  providers: [],
+  providers: [
+    DataService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

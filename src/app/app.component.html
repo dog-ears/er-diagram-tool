@@ -1,1 +1,18 @@
 <navbar></navbar>
+
+<div class="container-fluid mt-3">
+  <div class="row">
+    <div id="canvas" class="col-sm-10">
+
+        [ diagram area ]
+
+    </div>
+    <div id="data-info" class="col-sm-2">
+      <div class="card">
+        <div class="card-body">
+          <pre class="card-text">{{ data | json }}</pre>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
