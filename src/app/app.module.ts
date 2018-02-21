@@ -14,6 +14,7 @@ import { DataService } from './service/data.service';
 // component
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ModelComponent } from './model/model.component';
 import { ModalDataComponent } from './modal-data/modal-data.component';
 import { ModalModelComponent } from './modal-model/modal-model.component';
 
@@ -21,6 +22,7 @@ import { ModalModelComponent } from './modal-model/modal-model.component';
   declarations: [
     AppComponent,
     NavbarComponent,
+    ModelComponent,
     ModalDataComponent,
     ModalModelComponent,
   ],

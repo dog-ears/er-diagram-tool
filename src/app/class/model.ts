@@ -26,4 +26,13 @@ export class Model {
     this._next_schema_id ++;
     return this._next_schema_id-1;
   }
+
+  public getElementId(): string{
+    return "model" + this.id;
+  }
+
+  public getElementH2Id(): string{
+    return "model" + this.id + "-h2";
+  }
+  
 }

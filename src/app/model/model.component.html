@@ -1,0 +1,17 @@
+<div id="{{myModel.getElementId()}}" class="model-node list-group d-inline-flex">
+
+  <h2 id="{{myModel.getElementH2Id()}}" class="list-group-item list-group-item-primary d-flex" [class.list-group-item-primary]="myModel.is_pivot === false" [class.list-group-item-secondary]="myModel.is_pivot === true">
+    <span class="align-self-center mr-auto">{{myModel.id}}:{{myModel.name}}</span>
+    <span class="icon-group align-self-center" id="icon01">
+      <i *ngIf="myModel.is_pivot===false" class="material-icons ml-3" (click)="editModel()">mode_edit</i>
+      <i class="material-icons ml-1" (click)="deleteModel()">close</i>
+    </span>
+  </h2>
+
+  <div class="list-group-item d-flex">[Schema is here!]</div>
+
+  <div *ngIf="myModel.is_pivot===false" class="list-group-item text-center">
+    <a href="javascript:void(0)" (click)="addSchema()"><i class="material-icons align-middle">add_circle</i> <span class="align-middle">add schema</span></a>
+  </div>
+
+</div>

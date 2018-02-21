@@ -21,4 +21,9 @@ export class DataService {
     model.id = this.data.getNewModelId();
     this.data.models.push(model);
   }
+
+  public deleteModel(id: number):void{
+    console.log('DataService.deleteModel() is called!');
+    this.data.models = this.data.models.filter((v,i)=>v.id!=id);
+  }
 }

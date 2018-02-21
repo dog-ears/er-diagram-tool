@@ -4,7 +4,7 @@
   <div class="row">
     <div id="canvas" class="col-sm-10">
 
-        [ diagram area ]
+      <model *ngFor="let model of data.models" [myModel]="model"></model>
 
     </div>
     <div id="data-info" class="col-sm-2">
