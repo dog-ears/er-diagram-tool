@@ -10,6 +10,7 @@ import { ModalModule } from 'ngx-bootstrap/modal';
 
 // service
 import { DataService } from './service/data.service';
+import { JsPlumbService } from './service/jsPlumb.service';
 
 // component
 import { AppComponent } from './app.component';
@@ -38,7 +39,8 @@ import { ModalSchemaComponent } from './modal-schema/modal-schema.component';
     ModalModule.forRoot(),
   ],
   providers: [
-    DataService
+    DataService,
+    JsPlumbService
   ],
   bootstrap: [AppComponent],
   entryComponents: [
