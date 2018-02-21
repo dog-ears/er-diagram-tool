@@ -1,10 +1,12 @@
 // core
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 // ngx-bootstrap
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 // service
 import { DataService } from './service/data.service';
@@ -12,20 +14,27 @@ import { DataService } from './service/data.service';
 // component
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
+import { ModalDataComponent } from './modal-data/modal-data.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    NavbarComponent
+    NavbarComponent,
+    ModalDataComponent,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     BsDropdownModule.forRoot(),
     CollapseModule.forRoot(),
+    ModalModule.forRoot(),
   ],
   providers: [
     DataService
   ],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents: [
+    ModalDataComponent,
+  ]
 })
 export class AppModule { }

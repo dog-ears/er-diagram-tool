@@ -9,19 +9,19 @@
       <li class="nav-item dropdown" dropdown>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" dropdownToggle>Edit</a>
         <div class="dropdown-menu" *dropdownMenu>
-          <a class="dropdown-item" href="#">Create Model</a>
+          <a class="dropdown-item" (click)="createModel()">Create Model</a>
         </div>
       </li>
       <li class="nav-item dropdown" dropdown>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" dropdownToggle>Export</a>
         <div class="dropdown-menu" *dropdownMenu>
-          <a class="dropdown-item" href="#">Export JSON</a>
+          <a class="dropdown-item" (click)="exportJson()">Export JSON</a>
         </div>
       </li>
       <li class="nav-item dropdown" dropdown>
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" dropdownToggle>Setting</a>
         <div class="dropdown-menu" *dropdownMenu>
-          <a class="dropdown-item" href="#">Data Setting</a>
+          <a class="dropdown-item" (click)="dataSetting()">Data Setting</a>
         </div>
       </li>
     </ul>
