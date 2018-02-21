@@ -15,4 +15,10 @@ export class DataService {
     console.log('DataService.constructor() is called!');
     this.data = new Data();
   }
+
+  public addModel(model: Model):void{
+    console.log('DataService.addModel() is called!');
+    model.id = this.data.getNewModelId();
+    this.data.models.push(model);
+  }
 }

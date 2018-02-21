@@ -24,9 +24,7 @@ export class ModalModelComponent {
 
   private create(){
     console.log('ModalTableComponent.create() is called!');
-
-    // add model here!
-
+    this.dataService.addModel(this.model);
     this.bsModalRef.hide();
   }
 }
