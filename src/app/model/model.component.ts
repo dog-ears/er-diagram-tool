@@ -10,6 +10,7 @@ import { DataService } from '../service/data.service';
 
 // component
 import { ModalModelComponent } from '../modal-model/modal-model.component';
+import { ModalSchemaComponent } from '../modal-schema/modal-schema.component';
 
 // class
 import { Model } from '../class/model';
@@ -45,5 +46,11 @@ export class ModelComponent {
 
   private addSchema():void{
     console.log('ModelComponent('+ this.myModel.id +').addSchema() is called!');
+    var schema = new Schema();
+    schema.parent_id = this.myModel.id;
+    this.bsModalRef = this.bsModalService.show( ModalSchemaComponent, {initialState:{
+      mode: 'create',
+      schema: schema
+    }} );
   }
 }

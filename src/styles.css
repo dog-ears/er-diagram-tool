@@ -1,3 +1,10 @@
+.material-icons{
+    cursor:pointer;
+}
+.material-icons.disable{
+    cursor:default;
+    opacity: 0.3;
+}
 .model-node *{
     font-size: 0.8rem;
 }

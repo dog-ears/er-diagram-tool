@@ -29,4 +29,8 @@ export class Schema {
     this.belongsto_column = '';
     this.parent_id = 0;
   }
+  
+  public getElementId():string{
+    return 'model' + this.parent_id + '-schema' + this.id;
+  }
 }

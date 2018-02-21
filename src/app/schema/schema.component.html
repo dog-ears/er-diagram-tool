@@ -1,0 +1,7 @@
+<span class="align-self-center mr-auto">{{mySchema.name}}</span>
+<span *ngIf="is_pivot===false" class="align-self-center ml-3"><i (click)="editSchema()" class="material-icons">mode_edit</i></span>
+<span *ngIf="is_pivot===false" class="align-self-center ml-1"><i (click)="deleteSchema()" class="material-icons">close</i></span>
+<span *ngIf="is_pivot===false" class="align-self-center ml-2 d-inline-flex flex-column">
+  <i [class.disable]="first" (click)="moveupSchema()" class="material-icons">arrow_drop_up</i>
+  <i [class.disable]="last" (click)="movedownSchema()" class="material-icons">arrow_drop_down</i>
+</span>

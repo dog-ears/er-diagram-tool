@@ -1,0 +1,75 @@
+<div class="modal-header">
+  <h5 class="modal-title" *ngIf="mode == 'create'">Create Schema</h5>
+  <h5 class="modal-title" *ngIf="mode == 'edit'">Edit Schema</h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <form>
+    <div class="form-group row">
+      <label for="name-field" class="col-sm-4 col-form-label text-right">Name</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control form-control-sm" id="name-field" name="name" [(ngModel)]="schema.name" autofocus>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="display_name-field" class="col-sm-4 col-form-label text-right">Display name</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control form-control-sm" id="display_name-field" name="display_name" [(ngModel)]="schema.display_name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="type-field" class="col-sm-4 col-form-label text-right">Type</label>
+      <div class="col-sm-8">
+        <select id="type-field" name="type" class="form-control form-control-sm" [(ngModel)]="schema.type">
+          <option value="string">string</option>
+          <option value="integer" selected>integer</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="input_type-field" class="col-sm-4 col-form-label text-right">Input Type</label>
+      <div class="col-sm-8">
+        <select id="input_type-field" name="input_type" class="form-control form-control-sm" [(ngModel)]="schema.input_type">
+          <option value="text">text</option>
+          <option value="textarea" selected>textarea</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="varidate-field" class="col-sm-4 col-form-label text-right">Varidate</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control form-control-sm" id="varidate-field" name="varidate" [(ngModel)]="schema.varidate">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="faker_type-field" class="col-sm-4 col-form-label text-right">Varidate</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control form-control-sm" id="faker_type-field" name="faker_type" [(ngModel)]="schema.faker_type">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-8 offset-sm-4">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label"><input type="checkbox" class="form-check-input" id="nullable-field" name="nullable" value="true" [(ngModel)]="schema.nullable"> nullable</label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-8 offset-sm-4">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label"><input type="checkbox" class="form-check-input" id="show_in_list-field" name="show_in_list" value="true" [(ngModel)]="schema.show_in_list"> show in list</label> 
+          <label class="form-check-label ml-3"><input type="checkbox" class="form-check-input" id="show_in_detail-field" name="show_in_detail" value="true" [(ngModel)]="schema.show_in_detail"> show in detail</label>
+        </div>
+      </div>
+    </div>
+    <input type="hidden" name="parent_id" [(ngModel)]="schema.parent_id">
+  </form>
+
+</div>
+<div class="modal-footer" *ngIf="mode == 'create'">
+  <button type="button" class="btn btn-primary" (click)="create()">Create</button>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="bsModalRef.hide()">Close</button>
+</div>

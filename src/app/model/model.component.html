@@ -8,7 +8,7 @@
     </span>
   </h2>
 
-  <div class="list-group-item d-flex">[Schema is here!]</div>
+  <schema *ngFor="let schema of myModel.schemas; let first=first; let last=last;" [mySchema]="schema" [first]="first" [last]="last" [is_pivot]="myModel.is_pivot" id="{{schema.getElementId()}}" class="list-group-item d-flex"></schema>
 
   <div *ngIf="myModel.is_pivot===false" class="list-group-item text-center">
     <a href="javascript:void(0)" (click)="addSchema()"><i class="material-icons align-middle">add_circle</i> <span class="align-middle">add schema</span></a>

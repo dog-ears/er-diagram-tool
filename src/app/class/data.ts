@@ -20,4 +20,8 @@ export class Data {
     this._next_model_id ++;
     return this._next_model_id-1;
   }
+  
+  public getModelById(model_id:number): Model{
+    return this.models.filter( (v,i) => v.id===model_id )[0];
+  }
 }
