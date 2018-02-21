@@ -1,0 +1,39 @@
+<div class="modal-header">
+  <h5 class="modal-title">
+    <ng-container *ngIf="mode === 'create'">Create Model</ng-container>
+    <ng-container *ngIf="mode === 'edit'">Edit Model</ng-container>
+  </h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <form>
+    <input type="hidden" name="is_pivot" [(ngModel)]="model.is_pivot">
+    <div class="form-group row">
+      <label for="name-field" class="col-sm-4 col-form-label text-right">Name</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control form-control-sm" id="name-field" name="name" [(ngModel)]="model.name">
+      </div>
+    </div>
+    <div class="form-group row">
+      <label for="display_name-field" class="col-sm-4 col-form-label text-right">Display name</label>
+      <div class="col-sm-8">
+        <input type="text" class="form-control form-control-sm" id="display_name-field" name="display_name" [(ngModel)]="model.display_name">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-8 offset-sm-4">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label"><input type="checkbox" class="form-check-input" id="use_soft_delete-field" name="use_soft_delete" value="true" [(ngModel)]="model.use_soft_delete"> use soft delete</label>
+        </div>
+      </div>
+    </div>
+  </form>
+
+</div>
+<div class="modal-footer" *ngIf="mode == 'create'">
+  <button type="button" class="btn btn-primary" (click)="create()">Create</button>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="bsModalRef.hide()">Close</button>
+</div>

@@ -15,12 +15,14 @@ import { DataService } from './service/data.service';
 import { AppComponent } from './app.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ModalDataComponent } from './modal-data/modal-data.component';
+import { ModalModelComponent } from './modal-model/modal-model.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     NavbarComponent,
     ModalDataComponent,
+    ModalModelComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,6 +37,7 @@ import { ModalDataComponent } from './modal-data/modal-data.component';
   bootstrap: [AppComponent],
   entryComponents: [
     ModalDataComponent,
+    ModalModelComponent,
   ]
 })
 export class AppModule { }
