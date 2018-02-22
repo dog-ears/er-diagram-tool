@@ -20,6 +20,7 @@ import { SchemaComponent } from './schema/schema.component';
 import { ModalDataComponent } from './modal-data/modal-data.component';
 import { ModalModelComponent } from './modal-model/modal-model.component';
 import { ModalSchemaComponent } from './modal-schema/modal-schema.component';
+import { ModalRelationComponent } from './modal-relation/modal-relation.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +31,7 @@ import { ModalSchemaComponent } from './modal-schema/modal-schema.component';
     ModalDataComponent,
     ModalModelComponent,
     ModalSchemaComponent,
+    ModalRelationComponent,
   ],
   imports: [
     BrowserModule,
@@ -47,6 +49,7 @@ import { ModalSchemaComponent } from './modal-schema/modal-schema.component';
     ModalDataComponent,
     ModalModelComponent,
     ModalSchemaComponent,
+    ModalRelationComponent,
   ]
 })
 export class AppModule { }

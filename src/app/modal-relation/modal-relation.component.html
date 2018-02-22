@@ -1,0 +1,52 @@
+<div class="modal-header">
+  <h5 class="modal-title">New Relation <span *ngIf="source_model && target_model">({{source_model.name}} -> {{target_model.name}})</span></h5>
+  <button type="button" class="close" data-dismiss="modal" aria-label="Close" (click)="bsModalRef.hide()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+<div class="modal-body">
+
+  <form>
+    <div class="row">
+      <div class="col-sm-4 text-right">Type</div>
+      <div class="col-sm-8">
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="type" id="type1" value="one-to-many" [(ngModel)]="relation_type"> one-to-many
+          </label>
+        </div>
+        <div class="form-check form-check-inline">
+          <label class="form-check-label">
+            <input class="form-check-input" type="radio" name="type" id="type2" value="many-to-many" [(ngModel)]="relation_type"> many-to-many
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <div class="form-group row d-flex" *ngIf="source_model && target_model">
+      <label for="source_model_display_schema-field" class="col-sm-4 col-form-label text-right align-self-center">Source Model Display Schema</label>
+      <div class="col-sm-8 align-self-center" *ngIf="source_model.schemas">
+        <select id="source_model_display_schema-field" name="source_model_display_schema" class="form-control form-control-sm" [(ngModel)]="source_model_display_schema">
+          <option value="" selected disabled hidden>--- select display schema here ---</option>
+          <option *ngFor="let schema of source_model.schemas;" value="{{schema.name}}">{{schema.name}}</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group row d-flex" *ngIf="relation_type=='many-to-many'">
+      <label for="target_model_display_schema-field" class="col-sm-4 col-form-label text-right align-self-center">Target Model Display Schema</label>
+      <div class="col-sm-8 align-self-center" *ngIf="target_model.schemas">
+        <select id="target_model_display_schema-field" name="target_model_display_schema" class="form-control form-control-sm" [(ngModel)]="target_model_display_schema">
+          <option value="" selected disabled hidden>--- select display schema here ---</option>
+          <option *ngFor="let schema of target_model.schemas" value="{{schema.name}}">{{schema.name}}</option>
+        </select>
+      </div>
+    </div>
+
+  </form>
+
+</div>
+<div class="modal-footer">
+  <button type="button" class="btn btn-primary" (click)="create()">Create</button>
+  <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="bsModalRef.hide()">Close</button>
+</div>

@@ -61,4 +61,13 @@ export class DataService {
     }
     this.flg_repaint = true;
   }
+
+  public addOneToManyRelation( source_model:Model, target_model:Model, source_model_display_schema:string, target_model_display_schema:string ):void{
+    console.log('DataService.addOneToManyRelation() is called!');
+  }
+  
+  public addManyToManyRelation( source_model:Model, target_model:Model, source_model_display_schema:string, target_model_display_schema:string ):void{
+    console.log('DataService.addManyToManyRelation() is called!');
+  }
+  
 }
