@@ -24,4 +24,8 @@ export class Data {
   public getModelById(model_id:number): Model{
     return this.models.filter( (v,i) => v.id===model_id )[0];
   }
+
+  public getModelByElementH2Id(model_element_h2_id:string): Model{
+    return this.models.filter( (v,i) => v.getElementH2Id()===model_element_h2_id )[0];
+  }
 }

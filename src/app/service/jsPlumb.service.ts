@@ -1,8 +1,15 @@
 // core
 import { Injectable } from '@angular/core';
 
+// ngx-bootstrap
+import { BsModalService } from 'ngx-bootstrap/modal';
+import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
+
 // service
 import { DataService } from '../service/data.service';
+
+// component
+import { ModalRelationComponent } from '../modal-relation/modal-relation.component';
 
 // class
 import { Model } from '../class/model';
@@ -13,8 +20,9 @@ declare var jsPlumb:any;
 export class JsPlumbService {
 
   private _instance:any;
+  private bsModalRef: BsModalRef;
 
-  constructor( private dataService: DataService ) {}
+  constructor( private dataService: DataService, private bsModalService: BsModalService ) {}
 
   public init():void{
     console.log('JsPlumbService.init() is called!');
@@ -40,6 +48,14 @@ export class JsPlumbService {
       this._instance.addEndpoint( model.getElementH2Id(), {
         isSource: true,
         isTarget: true,
+        beforeDrop: (params)=> {
+          console.log('event[red - beforeDrop] is called!');
+          this.bsModalRef = this.bsModalService.show( ModalRelationComponent,{initialState:{
+            source_model: this.dataService.data.getModelByElementH2Id(params.sourceId),
+            target_model: this.dataService.data.getModelByElementH2Id(params.targetId)
+          }} );
+          return false;
+        },
       });
     }
   }
