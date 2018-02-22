@@ -32,12 +32,12 @@ export class JsPlumbService {
 
     // draggable
     this._instance.draggable( model.getElementId() );
-    //this._instance.toggleDraggable( model.getElementId() );
+    this._instance.toggleDraggable( model.getElementId() );
   }
   
   public toggleDraggable(model:Model): void{
 
     console.log('JsPlumbService.toggleDraggable() is called!');
-    //this._instance.toggleDraggable( model.getElementId() );
+    this._instance.toggleDraggable( model.getElementId() );
   }
 }
