@@ -10,10 +10,12 @@ import { Schema } from '../class/schema';
 export class DataService {
 
   public data:Data;
+  public flg_repaint:boolean;
 
   constructor() {
     console.log('DataService.constructor() is called!');
     this.data = new Data();
+    this.flg_repaint = false;
   }
 
   public addModel(model: Model):void{
@@ -25,6 +27,7 @@ export class DataService {
   public deleteModel(id: number):void{
     console.log('DataService.deleteModel() is called!');
     this.data.models = this.data.models.filter((v,i)=>v.id!=id);
+    this.flg_repaint = true;
   }
 
   public addSchema(schema:Schema):void{
@@ -38,6 +41,7 @@ export class DataService {
     console.log('DataService.deleteSchema() is called!');
     var obj_model = this.data.getModelById(schema.parent_id);
     obj_model.schemas = obj_model.schemas.filter((v,i)=>v.id!=schema.id);
+    this.flg_repaint = true;
   }
 
   public moveSchema(schema:Schema, dir:number):void{
@@ -55,5 +59,6 @@ export class DataService {
 
       }
     }
+    this.flg_repaint = true;
   }
 }

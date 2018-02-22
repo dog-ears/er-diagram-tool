@@ -26,4 +26,12 @@ export class AppComponent {
     console.log('AppComponent.ngAfterViewInit() is called!');
     this.jsPlumbService.init();
   }
+
+  ngAfterViewChecked(){
+    //console.log('AppComponent.ngAfterViewChecked() is called!');
+    if(this.dataService.flg_repaint){
+      this.dataService.flg_repaint = false;
+      this.jsPlumbService.repaintEverything();
+    }
+  }
 }

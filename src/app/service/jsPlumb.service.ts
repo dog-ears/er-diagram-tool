@@ -49,4 +49,10 @@ export class JsPlumbService {
     console.log('JsPlumbService.toggleDraggable() is called!');
     this._instance.toggleDraggable( model.getElementId() );
   }
+  
+  public repaintEverything(): void{
+
+    console.log('JsPlumbService.repaintEverything() is called!');
+    this._instance.repaintEverything(); 
+  }
 }

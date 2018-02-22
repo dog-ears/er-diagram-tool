@@ -20,6 +20,11 @@ export class ModalSchemaComponent {
   
   constructor( private bsModalRef: BsModalRef, private dataService: DataService ) {}
 
+  ngOnDestroy() {
+    console.log('ModalSchemaComponent.ngOnDestroy() is called!');
+    this.dataService.flg_repaint = true;
+  }
+
   private create(){
     console.log('ModalSchemaComponent.create() is called!');
     this.dataService.addSchema(this.schema);
