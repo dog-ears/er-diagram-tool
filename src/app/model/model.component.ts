@@ -7,6 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 // service
 import { DataService } from '../service/data.service';
+import { JsPlumbService } from '../service/jsPlumb.service';
 
 // component
 import { ModalModelComponent } from '../modal-model/modal-model.component';
@@ -27,7 +28,12 @@ export class ModelComponent {
 
   private bsModalRef: BsModalRef;
 
-  constructor( private bsModalService: BsModalService, private dataService: DataService ) {}
+  constructor( private bsModalService: BsModalService, private dataService: DataService, private jsPlumbService: JsPlumbService ) {}
+
+  ngAfterViewInit(){
+    console.log('ModelComponent('+ this.myModel.id +').ngAfterViewInit() is called!');
+    this.jsPlumbService.initModel(this.myModel);
+  }
 
   private editModel():void{
     console.log('ModelComponent('+ this.myModel.id +').editModel() is called!');
@@ -52,5 +58,10 @@ export class ModelComponent {
       mode: 'create',
       schema: schema
     }} );
+  }
+
+  private toggleDragable(){
+    console.log('ModelComponent('+ this.myModel.id +').toggleDragable() is called!');
+    this.jsPlumbService.toggleDraggable( this.myModel );
   }
 }

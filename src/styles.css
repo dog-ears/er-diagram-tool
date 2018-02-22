@@ -1,3 +1,6 @@
+
+/* .material-icons */
+
 .material-icons{
     cursor:pointer;
 }
@@ -5,6 +8,22 @@
     cursor:default;
     opacity: 0.3;
 }
-.model-node *{
+
+/* #canvas */
+
+#canvas{
+    position:relative;
+}
+#canvas .model-node{
+    position:absolute;
+}
+#canvas .model-node:hover{ 
+    opacity: 0.6;
+}
+#canvas .model-node *{
     font-size: 0.8rem;
 }
+#canvas .model-node h2{
+    cursor:move;
+}
+

@@ -4,6 +4,9 @@ import { Injectable } from '@angular/core';
 // service
 import { DataService } from '../service/data.service';
 
+// class
+import { Model } from '../class/model';
+
 declare var jsPlumb:any;
 
 @Injectable()
@@ -23,4 +26,18 @@ export class JsPlumbService {
     });
   }
 
+  public initModel(model:Model): void{
+
+    console.log('JsPlumbService.initModel() is called!');
+
+    // draggable
+    this._instance.draggable( model.getElementId() );
+    //this._instance.toggleDraggable( model.getElementId() );
+  }
+  
+  public toggleDraggable(model:Model): void{
+
+    console.log('JsPlumbService.toggleDraggable() is called!');
+    //this._instance.toggleDraggable( model.getElementId() );
+  }
 }
