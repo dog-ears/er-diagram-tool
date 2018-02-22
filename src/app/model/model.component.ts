@@ -35,6 +35,11 @@ export class ModelComponent {
     this.jsPlumbService.initModel(this.myModel);
   }
 
+	ngOnDestroy(){
+    console.log('ModelComponent('+ this.myModel.id +').ngOnDestroy() is called!');
+    this.jsPlumbService.destroyModel(this.myModel);
+	}
+
   private editModel():void{
     console.log('ModelComponent('+ this.myModel.id +').editModel() is called!');
     this.bsModalRef = this.bsModalService.show( ModalModelComponent, {initialState:{

@@ -60,6 +60,14 @@ export class JsPlumbService {
     }
   }
   
+  public destroyModel(model:Model){
+
+    //delete myself endpoint
+    this._instance.selectEndpoints({
+      source: model.getElementH2Id()
+    }).delete();
+  }
+  
   public toggleDraggable(model:Model): void{
 
     console.log('JsPlumbService.toggleDraggable() is called!');
