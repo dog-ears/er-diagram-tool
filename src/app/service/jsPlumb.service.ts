@@ -33,6 +33,15 @@ export class JsPlumbService {
     // draggable
     this._instance.draggable( model.getElementId() );
     this._instance.toggleDraggable( model.getElementId() );
+
+    // add endpoint
+    if(model.is_pivot === false){
+
+      this._instance.addEndpoint( model.getElementH2Id(), {
+        isSource: true,
+        isTarget: true,
+      });
+    }
   }
   
   public toggleDraggable(model:Model): void{

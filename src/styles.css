@@ -3,6 +3,7 @@
 
 .material-icons{
     cursor:pointer;
+    width:12.813px;
 }
 .material-icons.disable{
     cursor:default;
