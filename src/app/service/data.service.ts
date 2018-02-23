@@ -64,6 +64,24 @@ export class DataService {
 
   public addOneToManyRelation( source_model:Model, target_model:Model, source_model_display_schema:string, target_model_display_schema:string ):void{
     console.log('DataService.addOneToManyRelation() is called!');
+
+    // add schema ( [source_model.name]_id ) to target_model
+    var schema = new Schema();
+    schema.id = target_model.getNewSchemaId();
+    schema.name = source_model.name + "_id";
+    schema.display_name =  source_model.name + " - NAME";
+    schema.type = "integer";
+    schema.input_type = "select";
+    schema.varidate = "";
+    schema.faker_type = "numberBetween(1,30)";
+    schema.nullable = true;
+    schema.show_in_list = true;
+    schema.show_in_detail = true;
+    schema.belongsto = source_model.name;
+    schema.belongsto_column = source_model_display_schema;
+    schema.parent_id = target_model.id;
+
+    target_model.schemas.push(schema);
   }
   
   public addManyToManyRelation( source_model:Model, target_model:Model, source_model_display_schema:string, target_model_display_schema:string ):void{

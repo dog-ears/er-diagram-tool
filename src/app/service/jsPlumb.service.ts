@@ -13,6 +13,7 @@ import { ModalRelationComponent } from '../modal-relation/modal-relation.compone
 
 // class
 import { Model } from '../class/model';
+import { Schema } from '../class/schema';
 
 declare var jsPlumb:any;
 
@@ -66,6 +67,41 @@ export class JsPlumbService {
     this._instance.selectEndpoints({
       source: model.getElementH2Id()
     }).delete();
+  }
+  
+  public initSchema(schema:Schema){
+
+    console.log('JsPlumbService.initSchema() is called!');
+
+    if(schema.belongsto){
+
+      var source_id = this.dataService.data.getModelByName(schema.belongsto).getElementH2Id();
+      var target_id = schema.getElementId();
+      var option = {
+          source: source_id,
+          target: target_id
+      };
+      if( this._instance.getConnections(option).length === 0 ){
+        this._instance.connect(option);
+        console.log('schema connected!(' + source_id + '--->' + target_id + ')');
+      }
+    }
+    this.dataService.flg_repaint = true;
+  }
+  
+  public destroySchema(schema:Schema){
+
+    console.log('JsPlumbService.destroySchema() is called!');
+
+    if(schema.belongsto){
+      var option = {
+          target: schema.getElementId()
+      };
+      var connections_to_delete = this._instance.getConnections(option);
+      for( let i=0 ; i < connections_to_delete.length; i++){
+        this._instance.deleteConnection(connections_to_delete[i]);
+      }
+    }
   }
   
   public toggleDraggable(model:Model): void{

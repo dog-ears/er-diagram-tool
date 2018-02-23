@@ -7,6 +7,7 @@ import { BsModalRef } from 'ngx-bootstrap/modal/bs-modal-ref.service';
 
 // service
 import { DataService } from '../service/data.service';
+import { JsPlumbService } from '../service/jsPlumb.service';
 
 // component
 import { ModalSchemaComponent } from '../modal-schema/modal-schema.component';
@@ -28,7 +29,17 @@ export class SchemaComponent {
 
   private bsModalRef: BsModalRef;
 
-  constructor( private bsModalService: BsModalService, private dataService: DataService ) {}
+  constructor( private bsModalService: BsModalService, private dataService: DataService, private jsPlumbService: JsPlumbService ) {}
+
+  ngAfterViewInit(){
+    console.log( 'SchemaComponent(' + this.mySchema.parent_id + ' / ' + this.mySchema.id + ').ngAfterViewInit() is called!' );
+    this.jsPlumbService.initSchema(this.mySchema);
+  }
+
+	ngOnDestroy(){
+    console.log( 'SchemaComponent(' + this.mySchema.parent_id + ' / ' + this.mySchema.id + ').ngOnDestroy() is called!' );
+    this.jsPlumbService.destroySchema(this.mySchema);
+	}
 
   private editSchema():void{
     console.log('SchemaComponent(' + this.mySchema.parent_id + ' / ' + this.mySchema.id +').editSchema() is called!');
