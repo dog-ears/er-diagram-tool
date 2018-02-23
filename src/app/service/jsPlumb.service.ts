@@ -67,6 +67,17 @@ export class JsPlumbService {
     this._instance.selectEndpoints({
       source: model.getElementH2Id()
     }).delete();
+
+    //check connection exists as destroy-model source
+    var connections_to_delete = this._instance.getConnections({
+      source: model.getElementH2Id()
+    });
+
+    for( let i=0 ; i < connections_to_delete.length; i++){
+      var schema_to_delete = this.dataService.data.getSchemaByElementId( connections_to_delete[i].targetId );
+      this.dataService.deleteSchema( schema_to_delete );
+    }
+
   }
   
   public initSchema(schema:Schema){

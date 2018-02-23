@@ -34,5 +34,8 @@ export class Model {
   public getElementH2Id(): string{
     return "model" + this.id + "-h2";
   }
-  
+
+  public getSchemaById(schema_id:number): Schema{
+    return this.schemas.filter( (v,i)=> v.id===schema_id )[0];
+  }
 }

@@ -1,5 +1,6 @@
 // class
 import { Model } from './model';
+import { Schema } from './schema';
 
 export class Data {
 
@@ -31,5 +32,11 @@ export class Data {
 
   public getModelByName(model_name:string): Model{
     return this.models.filter( (v,i) => v.name===model_name )[0];
+  }
+
+  public getSchemaByElementId( schema_element_id:string ):Schema{
+    console.log('Data.getSchemaByElementId() is called!');
+    var ids = schema_element_id.replace('model','').split('-schema');
+    return this.getModelById( Number(ids[0]) ).getSchemaById( Number(ids[1]) );
   }
 }
