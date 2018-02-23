@@ -7,6 +7,7 @@ export class Data {
   public app_type: string;
   public use_laravel_auth: boolean;
   public models: Model[];
+  public tool: string;
 
   private _next_model_id: number;
 
@@ -14,6 +15,7 @@ export class Data {
       this.app_type = 'web';
       this.use_laravel_auth = false;
       this.models = [];
+      this.tool = 'ER-DIAGRAM-TOOL';
       this._next_model_id = 1;
   }
 
