@@ -86,6 +86,67 @@ export class DataService {
   
   public addManyToManyRelation( source_model:Model, target_model:Model, source_model_display_schema:string, target_model_display_schema:string ):void{
     console.log('DataService.addManyToManyRelation() is called!');
+
+    let model_data = [{
+      model: source_model,
+      display_schema: source_model_display_schema
+    },{
+      model: target_model,
+      display_schema: target_model_display_schema
+    }];
+
+    model_data.sort((a,b)=>{
+      if(a.model.name < b.model.name){
+        return -1;
+      }else if(a.model.name > b.model.name){
+        return 1;
+      }else{
+        return 0;
+      }
+    });
+    
+    // add pivot model
+    var pivot_model = new Model();
+    pivot_model.is_pivot = true;
+    pivot_model.id = this.data.getNewModelId();
+    pivot_model.name = model_data[0].model.name + '_' + model_data[1].model.name;
+    pivot_model.display_name = '';
+    pivot_model.use_soft_delete = true;
+    pivot_model.schemas = [];
+
+    // add two schema to pivot_model
+    var schema = new Schema();
+    schema.id = pivot_model.getNewSchemaId();
+    schema.name = model_data[0].model.name + "_id";
+    schema.display_name =  model_data[0].model.name + " - NAME";
+    schema.type = "integer";
+    schema.input_type = "select";
+    schema.varidate = "";
+    schema.faker_type = "numberBetween(1,30)";
+    schema.nullable = true;
+    schema.show_in_list = true;
+    schema.show_in_detail = true;
+    schema.belongsto = model_data[0].model.name;
+    schema.belongsto_column = model_data[0].display_schema;
+    schema.parent_id = pivot_model.id;
+    pivot_model.schemas.push(schema);
+
+    var schema = new Schema();
+    schema.id = pivot_model.getNewSchemaId();
+    schema.name = model_data[1].model.name + "_id";
+    schema.display_name =  model_data[1].model.name + " - NAME";
+    schema.type = "integer";
+    schema.input_type = "select";
+    schema.varidate = "";
+    schema.faker_type = "numberBetween(1,30)";
+    schema.nullable = true;
+    schema.show_in_list = true;
+    schema.show_in_detail = true;
+    schema.belongsto = model_data[1].model.name;
+    schema.belongsto_column = model_data[1].display_schema;
+    schema.parent_id = pivot_model.id;
+    pivot_model.schemas.push(schema);
+
+    this.data.models.push(pivot_model);
   }
-  
 }
