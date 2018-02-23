@@ -21,6 +21,7 @@ import { ModalDataComponent } from './modal-data/modal-data.component';
 import { ModalModelComponent } from './modal-model/modal-model.component';
 import { ModalSchemaComponent } from './modal-schema/modal-schema.component';
 import { ModalRelationComponent } from './modal-relation/modal-relation.component';
+import { ModalDownloadComponent } from './modal-download/modal-download.component';
 
 @NgModule({
   declarations: [
@@ -32,6 +33,7 @@ import { ModalRelationComponent } from './modal-relation/modal-relation.componen
     ModalModelComponent,
     ModalSchemaComponent,
     ModalRelationComponent,
+    ModalDownloadComponent,
   ],
   imports: [
     BrowserModule,
@@ -50,6 +52,7 @@ import { ModalRelationComponent } from './modal-relation/modal-relation.componen
     ModalModelComponent,
     ModalSchemaComponent,
     ModalRelationComponent,
+    ModalDownloadComponent,
   ]
 })
 export class AppModule { }
