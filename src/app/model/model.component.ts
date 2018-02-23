@@ -1,5 +1,5 @@
 // core
-import { Component, Input } from '@angular/core';
+import { Component, Input, ElementRef } from '@angular/core';
 
 // ngx-bootstrap
 import { BsModalService } from 'ngx-bootstrap/modal';
@@ -28,7 +28,7 @@ export class ModelComponent {
 
   private bsModalRef: BsModalRef;
 
-  constructor( private bsModalService: BsModalService, private dataService: DataService, private jsPlumbService: JsPlumbService ) {}
+  constructor( private bsModalService: BsModalService, private dataService: DataService, private jsPlumbService: JsPlumbService, private el: ElementRef ) {}
 
   ngAfterViewInit(){
     console.log('ModelComponent('+ this.myModel.id +').ngAfterViewInit() is called!');
@@ -65,8 +65,19 @@ export class ModelComponent {
     }} );
   }
 
-  private toggleDragable(){
-    console.log('ModelComponent('+ this.myModel.id +').toggleDragable() is called!');
+  private startDrag():void{
+    console.log('ModelComponent('+ this.myModel.id +').startDrag() is called!');
     this.jsPlumbService.toggleDraggable( this.myModel );
+  }
+
+  private endDrag():void{
+    console.log('ModelComponent('+ this.myModel.id +').endDrag() is called!');
+    this.jsPlumbService.toggleDraggable( this.myModel );
+    
+    // record position
+    let style_left = this.el.nativeElement.querySelectorAll( '#' + this.myModel.getElementId() )[0].style.left;
+    let style_top = this.el.nativeElement.querySelectorAll( '#' + this.myModel.getElementId() )[0].style.top;
+    this.myModel.pos_x = parseInt(style_left, 10);
+    this.myModel.pos_y = parseInt(style_top, 10);
   }
 }
