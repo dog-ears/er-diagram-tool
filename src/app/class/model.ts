@@ -14,16 +14,34 @@ export class Model {
 
   private _next_schema_id: number;
 
-  constructor() {
-    this.id = 0;
-    this.name = '';
-    this.display_name = '';
-    this.use_soft_delete = false;
-    this.schemas = [];
-    this.is_pivot = false;
-    this.pos_x = 0;
-    this.pos_y = 0;
-    this._next_schema_id = 1;
+  constructor(model_data=null) {
+    if(model_data){
+      this.id = model_data.id;
+      this.name = model_data.name;
+      this.display_name = model_data.display_name;
+      this.use_soft_delete = model_data.use_soft_delete;
+      this.schemas = [];
+
+      for(let i=0; i<model_data.schemas.length; i++){
+        let schema = new Schema(model_data.schemas[i]);
+        this.schemas.push(schema);
+      }
+
+      this.is_pivot = model_data.is_pivot;
+      this.pos_x = model_data.pos_x;
+      this.pos_y = model_data.pos_y;
+      this._next_schema_id = model_data._next_schema_id;
+    }else{
+      this.id = 0;
+      this.name = '';
+      this.display_name = '';
+      this.use_soft_delete = false;
+      this.schemas = [];
+      this.is_pivot = false;
+      this.pos_x = 0;
+      this.pos_y = 0;
+      this._next_schema_id = 1;
+    }
   }
 
   public getNewSchemaId(): number{
@@ -40,6 +58,11 @@ export class Model {
   }
 
   public getSchemaById(schema_id:number): Schema{
-    return this.schemas.filter( (v,i)=> v.id===schema_id )[0];
+    var schemas_filterded = this.schemas.filter( (v,i)=> v.id===schema_id );
+    if(schemas_filterded.length > 0){
+      return schemas_filterded[0];
+    }else{
+      return null;
+    }
   }
 }

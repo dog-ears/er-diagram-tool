@@ -149,4 +149,15 @@ export class DataService {
 
     this.data.models.push(pivot_model);
   }
+
+  public clearData(){
+    console.log('DataService.clearData() is called!');
+      this.data.clearData();
+  }
+
+  public loadData(data){
+    console.log('DataService.loadData() is called!');
+    this.clearData();    
+    this.data.loadData(data);
+  }
 }

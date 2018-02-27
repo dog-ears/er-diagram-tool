@@ -1,4 +1,4 @@
-<div id="{{myModel.getElementId()}}" class="model-node list-group d-inline-flex">
+<div id="{{myModel.getElementId()}}" class="model-node list-group d-inline-flex" [style.left.px]="myModel.pos_x" [style.top.px]="myModel.pos_y">
 
   <h2 id="{{myModel.getElementH2Id()}}" class="list-group-item list-group-item-primary d-flex" [class.list-group-item-primary]="myModel.is_pivot === false" [class.list-group-item-secondary]="myModel.is_pivot === true" (mousedown)="startDrag()" (mouseup)="endDrag()">
     <span class="align-self-center mr-auto">{{myModel.id}}:{{myModel.name}}</span>

@@ -13,6 +13,7 @@ import { DataService } from '../service/data.service';
 import { ModalDataComponent } from '../modal-data/modal-data.component';
 import { ModalModelComponent } from '../modal-model/modal-model.component';
 import { ModalDownloadComponent } from '../modal-download/modal-download.component';
+import { ModalUploadComponent } from '../modal-upload/modal-upload.component';
 
 // class
 import { Model }  from '../class/model';
@@ -47,6 +48,11 @@ export class NavbarComponent {
       uri: uri
     }} );
 
+  }
+
+  private importJson():void{
+    console.log('NavbarComponent.importJson() is called!');
+    this.bsModalRef = this.bsModalService.show( ModalUploadComponent );
   }
 
   private dataSetting():void{

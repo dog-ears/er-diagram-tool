@@ -75,9 +75,10 @@ export class JsPlumbService {
 
     for( let i=0 ; i < connections_to_delete.length; i++){
       var schema_to_delete = this.dataService.data.getSchemaByElementId( connections_to_delete[i].targetId );
-      this.dataService.deleteSchema( schema_to_delete );
+      if( schema_to_delete ){
+        this.dataService.deleteSchema( schema_to_delete );
+      }
     }
-
   }
   
   public initSchema(schema:Schema){
@@ -125,5 +126,10 @@ export class JsPlumbService {
 
     console.log('JsPlumbService.repaintEverything() is called!');
     this._instance.repaintEverything(); 
+  }
+  
+  public deleteAll(): void{
+    console.log('JsPlumbService.deleteAll() is called!');
+    this._instance.deleteEveryEndpoint();
   }
 }

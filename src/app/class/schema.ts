@@ -14,20 +14,36 @@ export class Schema {
   public belongsto_column: string;
   public parent_id: number;
 
-  constructor() {
-    this.id = 0;
-    this.name = '';
-    this.display_name = '';
-    this.type = '';
-    this.input_type = '';
-    this.varidate = '';
-    this.faker_type = '';
-    this.nullable = false;
-    this.show_in_list = true;
-    this.show_in_detail = true;
-    this.belongsto = '';
-    this.belongsto_column = '';
-    this.parent_id = 0;
+  constructor(schema_data=null) {
+    if(schema_data){
+      this.id = schema_data.id;
+      this.name = schema_data.name;
+      this.display_name = schema_data.display_name;
+      this.type = schema_data.type;
+      this.input_type = schema_data.input_type;
+      this.varidate = schema_data.varidate;
+      this.faker_type = schema_data.faker_type;
+      this.nullable = schema_data.nullable;
+      this.show_in_list = schema_data.show_in_list;
+      this.show_in_detail = schema_data.show_in_detail;
+      this.belongsto = schema_data.belongsto;
+      this.belongsto_column = schema_data.belongsto_column;
+      this.parent_id = schema_data.parent_id;
+    }else{
+      this.id = 0;
+      this.name = '';
+      this.display_name = '';
+      this.type = '';
+      this.input_type = '';
+      this.varidate = '';
+      this.faker_type = '';
+      this.nullable = false;
+      this.show_in_list = true;
+      this.show_in_detail = true;
+      this.belongsto = '';
+      this.belongsto_column = '';
+      this.parent_id = 0;
+    }
   }
   
   public getElementId():string{
