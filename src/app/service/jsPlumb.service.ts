@@ -49,6 +49,7 @@ export class JsPlumbService {
       this._instance.addEndpoint( model.getElementH2Id(), {
         isSource: true,
         isTarget: true,
+        cssClass: 'model-default-endpoint',
         beforeDrop: (params)=> {
           console.log('event[red - beforeDrop] is called!');
           this.bsModalRef = this.bsModalService.show( ModalRelationComponent,{initialState:{

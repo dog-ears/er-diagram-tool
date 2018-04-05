@@ -1,3 +1,11 @@
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 100px;
+}
 
 /* .material-icons */
 
@@ -26,5 +34,8 @@
 }
 #canvas .model-node h2{
     cursor:move;
+}
+#canvas .model-default-endpoint{
+    z-index: 6;
 }
 
