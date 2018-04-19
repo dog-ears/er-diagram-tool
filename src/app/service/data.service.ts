@@ -33,13 +33,44 @@ export class DataService {
   public addSchema(schema:Schema):void{
     console.log('DataService.addSchema() is called!');
     var obj_model = this.data.getModelById(schema.parent_id);
+    
+    // confirm changing schema id for relation or not change
+    var f_schema_id_for_relation = false;
+    if(obj_model.schema_id_for_relation === 0 && obj_model.is_pivot===false){
+      if( confirm("This model's Schema id for relation is default(0:id).\nWant to set new schema? ") ){
+        f_schema_id_for_relation = true;
+      }
+    }
+
     schema.id = obj_model.getNewSchemaId();
+    
+    if(f_schema_id_for_relation){
+      obj_model.schema_id_for_relation = schema.id;
+    }
+    
     obj_model.schemas.push(schema);
   }
   
   public deleteSchema(schema:Schema):void{
     console.log('DataService.deleteSchema() is called!');
+
     var obj_model = this.data.getModelById(schema.parent_id);
+
+    // confirm
+    var confirm_txt = '';
+    if(obj_model.schema_id_for_relation === schema.id){
+      confirm_txt = 'Want to delete ' + schema.name +'?' + "\n" + "(And this Model's Relation schema is change to default(id) )";
+    }else{
+      confirm_txt = 'Want to delete ' + schema.name +'?';
+    }
+    if( !confirm( confirm_txt ) ){
+      return;
+    }    
+
+    if(obj_model.schema_id_for_relation === schema.id){
+      obj_model.schema_id_for_relation = 0;
+    }
+
     obj_model.schemas = obj_model.schemas.filter((v,i)=>v.id!=schema.id);
     this.flg_repaint = true;
   }
@@ -62,7 +93,7 @@ export class DataService {
     this.flg_repaint = true;
   }
 
-  public addOneToManyRelation( source_model:Model, target_model:Model, source_model_display_schema:string, target_model_display_schema:string ):void{
+  public addOneToManyRelation( source_model:Model, target_model:Model ):void{
     console.log('DataService.addOneToManyRelation() is called!');
 
     // add schema ( [source_model.name]_id ) to target_model
@@ -78,21 +109,18 @@ export class DataService {
     schema.show_in_list = true;
     schema.show_in_detail = true;
     schema.belongsto = source_model.name;
-    schema.belongsto_column = source_model_display_schema;
     schema.parent_id = target_model.id;
 
     target_model.schemas.push(schema);
   }
   
-  public addManyToManyRelation( source_model:Model, target_model:Model, source_model_display_schema:string, target_model_display_schema:string ):void{
+  public addManyToManyRelation( source_model:Model, target_model:Model ):void{
     console.log('DataService.addManyToManyRelation() is called!');
 
     let model_data = [{
       model: source_model,
-      display_schema: source_model_display_schema
     },{
       model: target_model,
-      display_schema: target_model_display_schema
     }];
 
     model_data.sort((a,b)=>{
@@ -110,7 +138,7 @@ export class DataService {
     pivot_model.is_pivot = true;
     pivot_model.id = this.data.getNewModelId();
     pivot_model.name = model_data[0].model.name + '_' + model_data[1].model.name;
-    pivot_model.display_name = '';
+    pivot_model.display_name = 'PIVOT';
     pivot_model.use_soft_delete = true;
     pivot_model.schemas = [];
 
@@ -127,7 +155,6 @@ export class DataService {
     schema.show_in_list = true;
     schema.show_in_detail = true;
     schema.belongsto = model_data[0].model.name;
-    schema.belongsto_column = model_data[0].display_schema;
     schema.parent_id = pivot_model.id;
     pivot_model.schemas.push(schema);
 
@@ -143,7 +170,6 @@ export class DataService {
     schema.show_in_list = true;
     schema.show_in_detail = true;
     schema.belongsto = model_data[1].model.name;
-    schema.belongsto_column = model_data[1].display_schema;
     schema.parent_id = pivot_model.id;
     pivot_model.schemas.push(schema);
 

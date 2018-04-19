@@ -11,7 +11,6 @@ export class Schema {
   public show_in_list: boolean;
   public show_in_detail: boolean;
   public belongsto: string;
-  public belongsto_column: string;
   public parent_id: number;
 
   constructor(schema_data=null) {
@@ -27,7 +26,6 @@ export class Schema {
       this.show_in_list = schema_data.show_in_list;
       this.show_in_detail = schema_data.show_in_detail;
       this.belongsto = schema_data.belongsto;
-      this.belongsto_column = schema_data.belongsto_column;
       this.parent_id = schema_data.parent_id;
     }else{
       this.id = 0;
@@ -41,7 +39,6 @@ export class Schema {
       this.show_in_list = true;
       this.show_in_detail = true;
       this.belongsto = '';
-      this.belongsto_column = '';
       this.parent_id = 0;
     }
   }

@@ -32,7 +32,7 @@ export class NavbarComponent {
   constructor(private bsModalService: BsModalService, private dataService: DataService, private sanitizer: DomSanitizer) {}
 
   private createModel():void{
-    console.log('NavbarComponent.createNewTable() is called!');
+    console.log('NavbarComponent.createModel() is called!');
     this.bsModalRef = this.bsModalService.show( ModalModelComponent, {initialState:{
       mode: 'create',
       model: new Model()

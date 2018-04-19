@@ -30,6 +30,21 @@
         </div>
       </div>
     </div>
+    <div class="form-group row">
+      <label for="schema_id_for_relation-field" class="col-sm-4 col-form-label text-right">Relation schema </label>
+      <div class="col-sm-8">
+        <select id="schema_id_for_relation-field" name="schema_id_for_relation" class="form-control form-control-sm" [(ngModel)]="model.schema_id_for_relation" *ngIf="model.schemas.length>0; else elseBlock">
+          <option value="" selected disabled hidden>--- select display schema here ---</option>
+          <option value="0">id</option>
+          <option *ngFor="let schema of model.schemas;" value="{{schema.id}}">{{schema.name}}</option>
+        </select>
+        <ng-template #elseBlock>
+          <select id="schema_id_for_relation-field" name="schema_id_for_relation" class="form-control form-control-sm" [(ngModel)]="model.schema_id_for_relation">
+            <option value="0" selected>--- no schemas ---</option>
+          </select>
+        </ng-template>
+      </div>
+    </div>
   </form>
 
 </div>

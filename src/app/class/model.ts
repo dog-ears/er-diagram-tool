@@ -9,6 +9,7 @@ export class Model {
   public use_soft_delete: boolean;
   public schemas: Schema[];
   public is_pivot: boolean;
+  public schema_id_for_relation: number;
   public pos_x: number;
   public pos_y: number;
 
@@ -27,6 +28,7 @@ export class Model {
         this.schemas.push(schema);
       }
 
+      this.schema_id_for_relation = 0;
       this.is_pivot = model_data.is_pivot;
       this.pos_x = model_data.pos_x;
       this.pos_y = model_data.pos_y;
@@ -38,6 +40,7 @@ export class Model {
       this.use_soft_delete = false;
       this.schemas = [];
       this.is_pivot = false;
+      this.schema_id_for_relation = 0;
       this.pos_x = 0;
       this.pos_y = 0;
       this._next_schema_id = 1;

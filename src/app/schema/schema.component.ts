@@ -51,9 +51,7 @@ export class SchemaComponent {
 
   private deleteSchema(){
     console.log('SchemaComponent(' + this.mySchema.parent_id + ' / ' + this.mySchema.id +').deleteSchema() is called!');
-    if( confirm('Want to delete ' + this.mySchema.name +'?') ){
-      this.dataService.deleteSchema( this.mySchema );
-    }
+    this.dataService.deleteSchema( this.mySchema );
   }
 
   private moveupSchema(){

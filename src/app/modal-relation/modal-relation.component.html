@@ -22,27 +22,6 @@
         </div>
       </div>
     </div>
-
-    <div class="form-group row d-flex" *ngIf="source_model && target_model">
-      <label for="source_model_display_schema-field" class="col-sm-4 col-form-label text-right align-self-center">Source Model Display Schema</label>
-      <div class="col-sm-8 align-self-center" *ngIf="source_model.schemas">
-        <select id="source_model_display_schema-field" name="source_model_display_schema" class="form-control form-control-sm" [(ngModel)]="source_model_display_schema">
-          <option value="" selected disabled hidden>--- select display schema here ---</option>
-          <option *ngFor="let schema of source_model.schemas;" value="{{schema.name}}">{{schema.name}}</option>
-        </select>
-      </div>
-    </div>
-
-    <div class="form-group row d-flex" *ngIf="relation_type=='many-to-many'">
-      <label for="target_model_display_schema-field" class="col-sm-4 col-form-label text-right align-self-center">Target Model Display Schema</label>
-      <div class="col-sm-8 align-self-center" *ngIf="target_model.schemas">
-        <select id="target_model_display_schema-field" name="target_model_display_schema" class="form-control form-control-sm" [(ngModel)]="target_model_display_schema">
-          <option value="" selected disabled hidden>--- select display schema here ---</option>
-          <option *ngFor="let schema of target_model.schemas" value="{{schema.name}}">{{schema.name}}</option>
-        </select>
-      </div>
-    </div>
-
   </form>
 
 </div>
