@@ -60,6 +60,13 @@ export class JsPlumbService {
         },
       });
     }
+
+    // load jsplumb connection
+    for(let i=0; i<this.dataService.data.models.length; i++){
+      for(let j=0; j<this.dataService.data.models[i].schemas.length; j++){
+        this.initSchema(this.dataService.data.models[i].schemas[j]);
+      }
+    }
   }
   
   public destroyModel(model:Model){
@@ -97,6 +104,8 @@ export class JsPlumbService {
       if( this._instance.getConnections(option).length === 0 ){
         this._instance.connect(option);
         console.log('schema connected!(' + source_id + '--->' + target_id + ')');
+      }else{
+        console.log('schema is already connected!(' + source_id + '--->' + target_id + ')')
       }
     }
     this.dataService.flg_repaint = true;
@@ -126,10 +135,11 @@ export class JsPlumbService {
   public repaintEverything(): void{
 
     console.log('JsPlumbService.repaintEverything() is called!');
-    this._instance.repaintEverything(); 
+    this._instance.repaintEverything();
   }
   
   public deleteAll(): void{
+
     console.log('JsPlumbService.deleteAll() is called!');
     this._instance.deleteEveryEndpoint();
   }

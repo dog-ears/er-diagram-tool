@@ -31,8 +31,8 @@ export class Schema {
       this.id = 0;
       this.name = '';
       this.display_name = '';
-      this.type = '';
-      this.input_type = '';
+      this.type = 'string';
+      this.input_type = 'text';
       this.varidate = '';
       this.faker_type = '';
       this.nullable = false;

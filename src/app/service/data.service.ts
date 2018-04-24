@@ -186,4 +186,73 @@ export class DataService {
     this.clearData();    
     this.data.loadData(data);
   }
+  
+  public addLaravelUserModel():void{
+    console.log('DataService.addLaravelUserModel() is called!');
+    var model = new Model();
+    model.id = this.data.getNewModelId();
+    model.name = 'user';
+    model.display_name = 'USER';
+    model.use_soft_delete = false;
+    model.schema_id_for_relation = 1;
+    this.data.models.push(model);
+    this.editSchemaToLaravelUserModel();
+  }
+  
+  public editSchemaToLaravelUserModel():void{
+    console.log('DataService.addSchemaToLaravelUserModel() is called!');
+
+    var model_user = this.data.getModelByName('user');
+    
+    // other column turn nullable to true
+    model_user.schemas.forEach((v)=>{
+      v.nullable = true;
+    });
+
+    if( model_user.getSchemaByName('name')===null ){
+      var schema = new Schema();
+      schema.name = 'name';
+      schema.parent_id = model_user.id;
+      this.addSchema(schema);
+    }
+    if( model_user.getSchemaByName('email')===null ){
+      var schema = new Schema();
+      schema.name = 'email';
+      schema.parent_id = model_user.id;
+      this.addSchema(schema);
+    }
+    if( model_user.getSchemaByName('password')===null ){
+      var schema = new Schema();
+      schema.name = 'password';
+      schema.parent_id = model_user.id;
+      this.addSchema(schema);
+    }
+
+    var model_user_schema_name = model_user.getSchemaByName('name');
+    var model_user_schema_email = model_user.getSchemaByName('email');
+    var model_user_schema_password = model_user.getSchemaByName('password');
+    
+    // set model's schema_id_for_relation to 'name'
+    model_user.schema_id_for_relation = model_user_schema_name.id;
+
+    // name
+    model_user_schema_name.display_name = 'NAME';
+    model_user_schema_name.type = 'string';
+    model_user_schema_name.input_type = 'text';
+    model_user_schema_name.nullable = false;
+
+    // email
+    model_user_schema_email.display_name = 'EMAIL';
+    model_user_schema_email.type = 'string';
+    model_user_schema_email.input_type = 'text';
+    model_user_schema_email.nullable = false;
+
+    // password
+    model_user_schema_password.display_name = 'PASSWORD';
+    model_user_schema_password.type = 'string';
+    model_user_schema_password.input_type = 'text';
+    model_user_schema_password.nullable = false;
+    model_user_schema_password.show_in_list = false;
+    model_user_schema_password.show_in_detail = false;
+  }
 }

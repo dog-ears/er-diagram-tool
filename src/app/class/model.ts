@@ -28,8 +28,8 @@ export class Model {
         this.schemas.push(schema);
       }
 
-      this.schema_id_for_relation = 0;
       this.is_pivot = model_data.is_pivot;
+      this.schema_id_for_relation = model_data.schema_id_for_relation;
       this.pos_x = model_data.pos_x;
       this.pos_y = model_data.pos_y;
       this._next_schema_id = model_data._next_schema_id;
@@ -62,6 +62,15 @@ export class Model {
 
   public getSchemaById(schema_id:number): Schema{
     var schemas_filterded = this.schemas.filter( (v,i)=> v.id===schema_id );
+    if(schemas_filterded.length > 0){
+      return schemas_filterded[0];
+    }else{
+      return null;
+    }
+  }
+  
+  public getSchemaByName(schema_name:string): Schema{
+    var schemas_filterded = this.schemas.filter( (v,i)=> v.name===schema_name );
     if(schemas_filterded.length > 0){
       return schemas_filterded[0];
     }else{
