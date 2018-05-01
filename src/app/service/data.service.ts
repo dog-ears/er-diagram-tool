@@ -106,6 +106,7 @@ export class DataService {
     schema.varidate = "";
     schema.faker_type = "numberBetween(1,30)";
     schema.nullable = true;
+    schema.unique = false;
     schema.show_in_list = true;
     schema.show_in_detail = true;
     schema.belongsto = source_model.name;
@@ -152,6 +153,7 @@ export class DataService {
     schema.varidate = "";
     schema.faker_type = "numberBetween(1,30)";
     schema.nullable = true;
+    schema.unique = false;
     schema.show_in_list = true;
     schema.show_in_detail = true;
     schema.belongsto = model_data[0].model.name;
@@ -167,6 +169,7 @@ export class DataService {
     schema.varidate = "";
     schema.faker_type = "numberBetween(1,30)";
     schema.nullable = true;
+    schema.unique = false;
     schema.show_in_list = true;
     schema.show_in_detail = true;
     schema.belongsto = model_data[1].model.name;
@@ -240,18 +243,21 @@ export class DataService {
     model_user_schema_name.type = 'string';
     model_user_schema_name.input_type = 'text';
     model_user_schema_name.nullable = false;
+    model_user_schema_name.unique = false;
 
     // email
     model_user_schema_email.display_name = 'EMAIL';
     model_user_schema_email.type = 'string';
     model_user_schema_email.input_type = 'text';
     model_user_schema_email.nullable = false;
+    model_user_schema_email.unique = true;
 
     // password
     model_user_schema_password.display_name = 'PASSWORD';
     model_user_schema_password.type = 'string';
     model_user_schema_password.input_type = 'text';
     model_user_schema_password.nullable = false;
+    model_user_schema_password.unique = false;
     model_user_schema_password.show_in_list = false;
     model_user_schema_password.show_in_detail = false;
   }

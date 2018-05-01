@@ -8,6 +8,7 @@ export class Schema {
   public varidate: string;
   public faker_type: string;
   public nullable: boolean;
+  public unique: boolean;
   public show_in_list: boolean;
   public show_in_detail: boolean;
   public belongsto: string;
@@ -23,6 +24,7 @@ export class Schema {
       this.varidate = schema_data.varidate;
       this.faker_type = schema_data.faker_type;
       this.nullable = schema_data.nullable;
+      this.unique = schema_data.unique;
       this.show_in_list = schema_data.show_in_list;
       this.show_in_detail = schema_data.show_in_detail;
       this.belongsto = schema_data.belongsto;
@@ -36,6 +38,7 @@ export class Schema {
       this.varidate = '';
       this.faker_type = '';
       this.nullable = false;
+      this.unique = false;
       this.show_in_list = true;
       this.show_in_detail = true;
       this.belongsto = '';

@@ -35,7 +35,8 @@ export class NavbarComponent {
     console.log('NavbarComponent.createModel() is called!');
     this.bsModalRef = this.bsModalService.show( ModalModelComponent, {initialState:{
       mode: 'create',
-      model: new Model()
+      model: new Model(),
+      use_laravel_auth: this.dataService.data.use_laravel_auth
     }} );
   }
 

@@ -45,7 +45,9 @@ export class SchemaComponent {
     console.log('SchemaComponent(' + this.mySchema.parent_id + ' / ' + this.mySchema.id +').editSchema() is called!');
     this.bsModalRef = this.bsModalService.show( ModalSchemaComponent, {initialState:{
       mode:'edit',
-      schema: this.mySchema
+      schema: this.mySchema,
+      use_laravel_auth: this.dataService.data.use_laravel_auth,
+      parent_model: this.dataService.data.getModelById(this.mySchema.parent_id)
     }} );
   }
 

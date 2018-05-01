@@ -11,7 +11,17 @@
     <div class="form-group row">
       <label for="name-field" class="col-sm-4 col-form-label text-right">Name</label>
       <div class="col-sm-8">
-        <input type="text" class="form-control form-control-sm" id="name-field" name="name" [(ngModel)]="schema.name" autofocus>
+
+        <ng-container *ngIf="use_laravel_auth && mode==='edit' && parent_model.name=='user' && ( schema.name=='name' || schema.name=='email' || schema.name=='password'); then laravelAuth_name; else notLaravelAuth_name"></ng-container>
+        <ng-template #laravelAuth_name>
+          <input type="text" class="form-control form-control-sm" id="name-field" name="name" [(ngModel)]="schema.name" readonly>
+          <small id="nameHelp" class="form-text text-muted">unable to change. This is for Laravel auth.</small>
+        </ng-template>
+        <ng-template #notLaravelAuth_name>
+          <input type="text" class="form-control form-control-sm" id="name-field" name="name" [(ngModel)]="schema.name" autofocus>
+          <small id="nameHelp" class="form-text text-muted">Input schema name with singular camelCase.</small>
+        </ng-template>
+
       </div>
     </div>
     <div class="form-group row">
@@ -23,20 +33,38 @@
     <div class="form-group row">
       <label for="type-field" class="col-sm-4 col-form-label text-right">Type</label>
       <div class="col-sm-8">
-        <select id="type-field" name="type" class="form-control form-control-sm" [(ngModel)]="schema.type">
-          <option value="string">string</option>
-          <option value="integer" selected>integer</option>
-        </select>
+
+        <ng-container *ngIf="use_laravel_auth && mode==='edit' && parent_model.name=='user' && ( schema.name=='name' || schema.name=='email' || schema.name=='password'); then laravelAuth_type; else notLaravelAuth_type"></ng-container>
+        <ng-template #laravelAuth_type>
+          <input type="text" class="form-control form-control-sm" id="type-field" name="type" [(ngModel)]="schema.type" readonly>
+          <small id="typeHelp" class="form-text text-muted">unable to change. This is for Laravel auth.</small>
+        </ng-template>
+        <ng-template #notLaravelAuth_type>
+          <select id="type-field" name="type" class="form-control form-control-sm" [(ngModel)]="schema.type">
+            <option value="string">string</option>
+            <option value="integer" selected>integer</option>
+          </select>
+        </ng-template>
+
       </div>
     </div>
     <div class="form-group row">
       <label for="input_type-field" class="col-sm-4 col-form-label text-right">Input Type</label>
       <div class="col-sm-8">
-        <select id="input_type-field" name="input_type" class="form-control form-control-sm" [(ngModel)]="schema.input_type">
-          <option value="text">text</option>
-          <option value="textarea">textarea</option>
-          <option value="password">password</option>
-        </select>
+
+        <ng-container *ngIf="use_laravel_auth && mode==='edit' && parent_model.name=='user' && ( schema.name=='name' || schema.name=='email' || schema.name=='password'); then laravelAuth_input_type; else notLaravelAuth_input_type"></ng-container>
+        <ng-template #laravelAuth_input_type>
+          <input type="text" class="form-control form-control-sm" id="input_type-field" name="input_type" [(ngModel)]="schema.input_type" readonly>
+          <small id="input_typeHelp" class="form-text text-muted">unable to change. This is for Laravel auth.</small>
+        </ng-template>
+        <ng-template #notLaravelAuth_input_type>
+          <select id="input_type-field" name="input_type" class="form-control form-control-sm" [(ngModel)]="schema.input_type">
+            <option value="text">text</option>
+            <option value="textarea">textarea</option>
+            <option value="password">password</option>
+          </select>
+        </ng-template>
+
       </div>
     </div>
     <div class="form-group row">
@@ -53,9 +81,60 @@
     </div>
     <div class="form-group">
       <div class="col-sm-8 offset-sm-4">
-        <div class="form-check form-check-inline">
-          <label class="form-check-label"><input type="checkbox" class="form-check-input" id="nullable-field" name="nullable" value="true" [(ngModel)]="schema.nullable"> nullable</label>
-        </div>
+
+        <ng-container *ngIf="use_laravel_auth && mode==='edit' && parent_model.name=='user' && ( schema.name=='name' || schema.name=='email' || schema.name=='password'); then laravelAuth_nullable; else notLaravelAuth_nullable"></ng-container>
+        <ng-template #laravelAuth_nullable>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input type="checkbox" class="form-check-input" id="nullable-field" name="nullable" value="true" [(ngModel)]="schema.nullable" disabled="disabled"> nullable</label>
+            <input type="hidden" name="nullable" value="true" [(ngModel)]="schema.nullable" />
+          </div>
+          <small id="input_typeHelp" class="form-text text-muted">unable to change. This is for Laravel auth.</small>
+        </ng-template>
+        <ng-template #notLaravelAuth_nullable>
+          <ng-container *ngIf="use_laravel_auth && parent_model.name=='user'; then laravelAuth_nullable_a; else notLaravelAuth_nullable_a"></ng-container>
+        </ng-template>
+        <ng-template #laravelAuth_nullable_a>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input type="checkbox" class="form-check-input" id="nullable-field" name="nullable" value="true" disabled="disabled" checked="checked"> nullable</label>
+            <input type="hidden" name="nullable" value="true" />
+          </div>
+          <small id="input_typeHelp" class="form-text text-muted">unable to change nullable for Laravel auth user model schema.</small>
+        </ng-template>
+        <ng-template #notLaravelAuth_nullable_a>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input type="checkbox" class="form-check-input" id="nullable-field" name="nullable" value="true" [(ngModel)]="schema.nullable"> nullable</label>
+          </div>
+        </ng-template>
+
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-sm-8 offset-sm-4">
+
+        <ng-container *ngIf="use_laravel_auth && parent_model.name=='user' && ( schema.name=='name' || schema.name=='email' || schema.name=='password'); then laravelAuth_unique; else notLaravelAuth_unique"></ng-container>
+        <ng-template #laravelAuth_unique>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input type="checkbox" class="form-check-input" id="unique-field" name="unique" value="true" [(ngModel)]="schema.unique" disabled="disabled"> unique</label>
+            <input type="hidden" name="unique" value="true" [(ngModel)]="schema.unique" />
+          </div>
+          <small id="input_typeHelp" class="form-text text-muted">unable to change. This is for Laravel auth.</small>
+        </ng-template>
+        <ng-template #notLaravelAuth_unique>
+          <ng-container *ngIf="parent_model.is_pivot==true; then pivot_unique; else notPivot_unique"></ng-container>
+        </ng-template>
+        <ng-template #pivot_unique>
+          <div class="form-check form-check-inline">
+            <label class="form-check-label"><input type="checkbox" class="form-check-input" id="unique-field" name="unique" value="false" disabled="disabled"> unique</label>
+            <input type="hidden" name="unique" value="false" />
+          </div>
+          <small id="input_typeHelp" class="form-text text-muted">unable to use unique for pivot model schemas</small>
+        </ng-template>
+        <ng-template #notPivot_unique>
+          <div class="form-check form-check-inline">
+              <label class="form-check-label"><input type="checkbox" class="form-check-input" id="unique-field" name="unique" value="true" [(ngModel)]="schema.unique"> unique</label>
+          </div>
+        </ng-template>
+          
       </div>
     </div>
     <div class="form-group">

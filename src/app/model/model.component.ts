@@ -44,7 +44,8 @@ export class ModelComponent {
     console.log('ModelComponent('+ this.myModel.id +').editModel() is called!');
     this.bsModalRef = this.bsModalService.show( ModalModelComponent, {initialState:{
       mode: 'edit',
-      model: this.myModel
+      model: this.myModel,
+      use_laravel_auth: this.dataService.data.use_laravel_auth
     }});
   }
 
@@ -59,9 +60,14 @@ export class ModelComponent {
     console.log('ModelComponent('+ this.myModel.id +').addSchema() is called!');
     var schema = new Schema();
     schema.parent_id = this.myModel.id;
+    if(this.dataService.data.use_laravel_auth){
+      schema.nullable = true;
+    }
     this.bsModalRef = this.bsModalService.show( ModalSchemaComponent, {initialState:{
       mode: 'create',
-      schema: schema
+      schema: schema,
+      use_laravel_auth: this.dataService.data.use_laravel_auth,
+      parent_model: this.myModel
     }} );
   }
 
