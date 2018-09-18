@@ -24,6 +24,9 @@ export class ModalModelComponent {
 
   ngOnDestroy() {
     console.log('ModalSchemaComponent.ngOnDestroy() is called!');
+    
+    // convert string to number
+    this.model.schema_id_for_relation = Number(this.model.schema_id_for_relation);
     this.dataService.flg_repaint = true;
   }
 
